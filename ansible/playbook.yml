@@ -1,19 +1,19 @@
-- name: Deploy to tomcat
+
+
+- name: Deploy to Tomcat
   hosts: web
   become: yes
-  tasks: 
-    - name: copy war files
+  tasks:
+    - name: Copy WAR file to Tomcat
       copy:
-        src: "/var/snap/jenkins/4865/workspace/antom/target/antom.war"
-	dest: "/opt/tomcat/webapps/antom.war"
-	remote_src: no
-	
-    - name: start tomcat
+        src: "/var/snap/jenkins/4829/workspace/antom/target/antom.war"
+        dest: "/opt/tomcat/webapps/antom.war"
+        remote_src: no
+
+    - name: Restart Tomcat
       systemd:
-         name: tomcat
-          state: restarted
-
-
+        name: tomcat
+        state: restarted
 
 
 	
