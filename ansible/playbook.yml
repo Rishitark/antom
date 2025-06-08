@@ -1,0 +1,19 @@
+- name: Deploy to tomcat
+  hosts: web
+  become: yes
+  tasks: 
+    - name: copy war files
+      copy:
+        src: "/var/snap/jenkins/4865/workspace/antom/target/antom.war"
+	dest: "/opt/tomcat/webapps/antom.war"
+	remote_src: no
+	
+    - name: start tomcat
+      systemd:
+         name: tomcat
+          state: restarted
+
+
+
+
+	
